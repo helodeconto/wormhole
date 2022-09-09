@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    padding: 0;
+    margin: 10px;
+    border: 0 none;
+    background-color: #000000;
+    text-align: center;
+}
+
+@keyframes piscadela {
+    50% {
+        background-color: white;
+    }
+}
+
+main {
+    margin-top: 10px;
+    border-radius: 500px;
+    height: 80vh;
+    width: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main > div {
+    border: 10px solid black;
+    width: 50%;
+    flex: none;
+    transition: .3s;
+    border-radius: 50px;
+}
+
+main > div:nth-child(1) {
+    background-color: blue;
+}
+
+main > div:nth-child(2) {
+    background-color: red;
+}
+
+main > div:nth-child(3) {
+    background-color: green;
+}
+
+main > div:nth-child(4) {
+    background-color: yellow;
+}
+
+main > div.animate {
+    /* background-color: white; */ /* usado no exemplo transition */
+    animation: piscadela .3s ease-in-out;
+    /* animation-name: piscadela;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out; */
+}
+
+@media (max-width: 575.98px) {
+    main {
+        margin-top: 10px;
+        height: 60vh;
+        width: 60vh;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    main > div {
+        border: 10px solid black;
+        width: 50%;
+        flex: none;
+        transition: .3s;
+        border-radius: 50px;
+    }
+}

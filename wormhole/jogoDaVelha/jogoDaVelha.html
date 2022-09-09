@@ -1,0 +1,207 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo da velha</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+      :root {
+      --dark: #000000;
+      }
+      .bg-dark {
+          background-color: var(--dark) !important;
+      }
+      html, body, div{
+          display: flex;
+      }
+      html, body{
+          flex: 1;
+      }
+      body{
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+      }
+      #centro{
+          width: 300px;
+          height: 300px;
+          align-items: stretch;
+          flex-direction: column;
+      }
+      #centro>div{
+          flex:1;
+      }
+      #centro>div>div{
+          flex:1;
+          align-items: center;
+          justify-content: center;
+      }
+      #proximoJogador{
+          bottom: 50px;
+          width: 50px;
+          height: 50px;
+          margin-right: 0px;
+      }
+      #proximo {
+          font-family: Cambria;
+          font-size: x-large;
+          min-height: 10%;
+          height: 250px;
+          width: 400px;
+          float: left;
+          flex-direction: column;
+          justify-content: center;
+          padding: 10px;
+          margin-bottom: 30px;
+      }
+      #corpo{
+          flex-direction: column;
+          position: absolute;
+          width: 600px;
+          align-items: center;
+      }
+      </style>
+      <script>
+            
+        quemGanhou = function ( casa ) {
+          if ( casa == "velha") {
+          document.getElementById ( "centro" ).style.border = " 3px solid black"
+          document.getElementById ( "proximo" ).style.display = "none";
+        }
+        for  ( i = 0; i < casas.length; i++ ) {
+          casas[i].onclick = null;
+        };
+        }
+
+        estiloDaVitoria = function ( casaA, casaB, casaC){
+          casaA.style.border = "3px solid black"
+          casaB.style.border = "3px solid black"
+          casaC.style.border = "3px solid black"
+          document.getElementById ( "proximo" ).style.display = "none";
+        }
+
+        verificaFinal = function () {
+          if ( casas [0].innerHTML !== "" && casas[0].innerHTML == casas[1].innerHTML && casas [1].innerHTML == casas [2].innerHTML ){
+            quemGanhou (casas[0].innerHTML);
+            //linha 1
+            estiloDaVitoria (casas[0], casas[1], casas[2]);
+          carregarPag()
+          }else if  ( casas [3].innerHTML !== "" && casas[3].innerHTML == casas[4].innerHTML && casas [4].innerHTML == casas [5].innerHTML ){
+          quemGanhou (casas[0].innerHTML);
+          //linha 2
+          estiloDaVitoria (casas[3], casas[4], casas[5]);
+          carregarPag()
+          }else if  ( casas [6].innerHTML !== "" && casas[6].innerHTML == casas[7].innerHTML && casas [7].innerHTML == casas [8].innerHTML ){
+          quemGanhou (casas[0].innerHTML);
+          //linha 3
+          estiloDaVitoria (casas[6], casas[7], casas[8]);
+          carregarPag()
+          }else if  ( casas [0].innerHTML !== "" && casas[0].innerHTML == casas[3].innerHTML && casas [3].innerHTML == casas [6].innerHTML ){
+          quemGanhou (casas[0].innerHTML);
+          //coluna 1
+          estiloDaVitoria (casas[0], casas[3], casas[6]);
+          carregarPag()
+          }else if  ( casas [1].innerHTML !== "" && casas[1].innerHTML == casas[4].innerHTML && casas [4].innerHTML == casas [7].innerHTML ){
+          quemGanhou (casas[0].innerHTML);
+          //coluna 2
+          estiloDaVitoria (casas[1], casas[4], casas[7]);
+          carregarPag()
+          }else if  ( casas [2].innerHTML !== "" && casas[2].innerHTML == casas[5].innerHTML && casas [5].innerHTML == casas [8].innerHTML ){
+          quemGanhou (casas[0].innerHTML);
+          //coluna 3
+          estiloDaVitoria (casas[2], casas[5], casas[8]);
+          carregarPag()
+          }else if  ( casas [0].innerHTML !== "" && casas[0].innerHTML == casas[4].innerHTML && casas [4].innerHTML == casas [8].innerHTML ){
+          quemGanhou (casas[0].innerHTML);
+          //diagonal 1
+          estiloDaVitoria (casas[0], casas[4], casas[8]);
+          carregarPag()
+          }else if  ( casas [2].innerHTML !== "" && casas[2].innerHTML == casas[4].innerHTML && casas [4].innerHTML == casas [6].innerHTML ){
+          quemGanhou (casas[0].innerHTML);
+          //diagonal 2
+          estiloDaVitoria (casas[2], casas[4], casas[6]);
+          carregarPag()
+          }else if (
+          casas [0].innerHTML !== "" &&
+          casas [1].innerHTML !== "" &&
+          casas [2].innerHTML !== "" &&
+          casas [3].innerHTML !== "" &&
+          casas [4].innerHTML !== "" &&
+          casas [5].innerHTML !== "" &&
+          casas [6].innerHTML !== "" &&
+          casas [7].innerHTML !== "" &&
+          casas [8].innerHTML !== "" ){
+            quemGanhou ("velha");
+            carregarPag()
+          }
+        };
+
+        function carregarPag() {
+            window.location.href = "../jogo2.html"
+        }
+
+        var casas = [];
+        window.onload = function (){
+        casas = document.getElementsByClassName("casa");
+          for ( i = 0; i < casas.length; i++) {
+            casas[i].onclick = function (event) {
+              if (event.target.innerHTML === "") {
+                event.target.innerHTML = "<span><img src='" + proximaLetra + "'></span>";
+                if (proximaLetra === "letraX.png"){
+                  proximaLetra = "letraO.png";
+                  document.getElementById ("proximoJogador").src = "letraO.png";
+                  verificaFinal ();
+                } else {
+                  proximaLetra = "letraX.png";
+                  document.getElementById ("proximoJogador").src = "letraX.png";
+                  verificaFinal ();
+                } 
+              }
+            }
+          }
+        }
+
+        var proximaLetra = "letraX.png";
+        
+    </script> 
+</head>
+<body class="bg-dark">
+
+  <div id="corpo">
+    <div id="proximo">
+      <div class="text-light display-4 text-center" >JOGO DA VELHA</div>
+          <div class="justify-content-center m-4">
+              <div class="text-light">Vez de</div>
+              <input type="image" id="proximoJogador" class="m-2" src="letraX.png"></input>
+          </div>
+      </div>
+
+      <div id="centro">
+          <div>
+              <div class="casa"></div>
+              <div class="casa text-light" style="border-left: 1px solid"></div>
+              <div class="casa text-light" style="border-left: 1px solid"></div>
+          </div>
+          <div>
+              <div class="casa text-light" style="border-top: 1px solid; border-bottom: 1px solid"></div>
+              <div class="casa text-light" style="border: 1px solid "></div>
+              <div class="casa text-light" style="border-top: 1px solid; border-bottom: 1px solid"></div>
+          </div>
+          <div>
+              <div class="casa"></div>
+              <div class="casa text-light" style="border-left: 1px solid"></div>
+              <div class="casa text-light" style="border-left: 1px solid"></div>
+          </div>
+          <br/><br/><br/><br/>
+      </div>
+    </div>
+  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+:root {
+    --dark: #000000;
+}
+.bg-dark {
+    /*background-image: url(imagens/video-galaxia.mp4)*/
+    background-color: var(--dark) !important;
+}
+.jogo {
+    animation-name: gif;
+    animation-duration: 5s;
+    background-image: url(imagens/gif-wormhole2.gif);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+@keyframes gif {
+    from {
+        background-image: url(imagens/gif-wormhole2.gif);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-attachment: fixed;
+    }
+    to {
+        background-image: url(imagens/gif-wormhole2.gif);
+        background-repeat: no-repeat;
+        rotate: 90deg;
+        background-size: 100%;
+        background-attachment: fixed;
+    }
+}
+
+.banner video {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    object-fit: cover;
+    opacity: 70%;
+}
+
+.row {
+    position: absolute;
+}
